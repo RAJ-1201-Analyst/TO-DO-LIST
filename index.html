@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1>My Tasks</h1>
+      <p class="app__summary" aria-live="polite">
+        <span id="pending-count">0 pending</span>
+        <span aria-hidden="true">&middot;</span>
+        <span id="completed-count">0 completed</span>
+      </p>
+    </header>
+
+    <form class="add-form" id="add-form" autocomplete="off" novalidate>
+      <label for="task-input" class="visually-hidden">New task</label>
+      <input type="text" id="task-input" class="add-form__input" placeholder="What needs to be done?" maxlength="200">
+      <button type="submit" class="btn btn--primary">Add Task</button>
+    </form>
+    <p class="form-error" id="form-error" role="alert" hidden>Please enter a task before adding.</p>
+
+    <section class="list-section" aria-labelledby="pending-heading">
+      <h2 id="pending-heading">Pending <span class="badge" id="pending-badge">0</span></h2>
+      <ul class="task-list" id="pending-list"></ul>
+      <p class="empty-state" id="pending-empty">No pending tasks. Add one above!</p>
+    </section>
+
+    <section class="list-section" aria-labelledby="completed-heading">
+      <h2 id="completed-heading">Completed <span class="badge" id="completed-badge">0</span></h2>
+      <ul class="task-list" id="completed-list"></ul>
+      <p class="empty-state" id="completed-empty">No completed tasks yet.</p>
+    </section>
+  </main>
+
+  <!-- Cloned by script.js for every task -->
+  <template id="task-template">
+    <li class="task">
+      <input type="checkbox" class="task__toggle" aria-label="Mark complete">
+      <div class="task__content">
+        <span class="task__text"></span>
+        <input type="text" class="task__edit-input" maxlength="200" aria-label="Edit task" hidden>
+        <time class="task__time"></time>
+      </div>
+      <div class="task__actions">
+        <button type="button" class="btn btn--small" data-action="edit">Edit</button>
+        <button type="button" class="btn btn--small btn--danger" data-action="delete">Delete</button>
+      </div>
+    </li>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
